@@ -1,4 +1,4 @@
-### Superpower Android App
+# Superpower Android App
 This app helps to count the letters in words or sentences (skipping blank spaces and apostrophes).
 
 ## How to use it?
