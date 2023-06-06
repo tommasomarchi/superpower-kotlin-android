@@ -41,6 +41,9 @@ class MainActivity : ComponentActivity() {
             val numberOfLetters = remember {
                 mutableStateOf(0)
             }
+            val showNumber = remember {
+                mutableStateOf(false)
+            }
             SuperpowerTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -74,7 +77,7 @@ class MainActivity : ComponentActivity() {
                             Button(
                                 onClick = {
                                     word.value = ""
-                                    numberOfLetters.value = 0
+                                    showNumber.value = false
                                 },
                                 modifier = Modifier.width(135.dp),
                                 colors = ButtonDefaults.buttonColors(
@@ -86,7 +89,10 @@ class MainActivity : ComponentActivity() {
                             }
                             Spacer(modifier = Modifier.padding(5.dp))
                             Button(
-                                onClick = { numberOfLetters.value = countLetters(word.value) },
+                                onClick = {
+                                    numberOfLetters.value = countLetters(word.value)
+                                    showNumber.value = true
+                                },
                                 modifier = Modifier.width(135.dp),
                                 colors = ButtonDefaults.buttonColors(
                                     backgroundColor = Green,
@@ -97,7 +103,7 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                         Spacer(modifier = Modifier.padding(10.dp))
-                        AnimatedVisibility(visible = numberOfLetters.value != 0) {
+                        AnimatedVisibility(visible = showNumber.value) {
                             Text(
                                 text = numberOfLetters.value.toString(),
                                 fontSize = 175.sp,
